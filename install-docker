@@ -4,6 +4,43 @@
 # Offical commands can find at https://docs.docker.com/engine/
 # curl -sO https://raw.githubusercontent.com/Vincvn/server-install-collection/main/install-docker && chmod +x ./install-docker && sudo ./install-docker
 #######################################################
+
+#func
+ask_webui() {
+    printf "YOU CAN LEAVE THIS SCRIPT OR INSTALL WEBUIR!!!\"
+    printf "Install WebUI: \n"
+    prompt="WEBUI [1-3]: "
+    webui="portainer"
+    options=("Portainer" "Easypanel" "Yatch")
+    PS3="$prompt"
+    select opt in "${options[@]}"; do
+
+        case "$REPLY" in
+        1)
+            webui="portainer"
+            break
+            ;;
+        2)
+            webui="portainer"
+            break
+            ;;
+        3)
+            webui="yahtch.sh"
+            break
+            ;;
+        $((${#options[@]} + 1)))
+            printf "\nPortainer\n"
+            break
+            ;;
+        *)
+            printf "INVALID\n"
+            break
+            ;;
+        esac
+
+    done
+}
+
 if [ $(id -u) != "0" ]; then
     echo "You need to be root to perform this command"
     exit
@@ -56,33 +93,7 @@ fi
 sudo systemctl enable docker.service
 sudo systemctl enable containerd.service
 printf "DOCKER INSTALLED !!!\n"
-printf "YOU CAN LEAVE THIS SCRIPT OR INSTALL WEBUIR!!!\"
-printf "Install WebUI: \n"
-prompt="Please select [1-3]: "
-webui="portainer"
-options=("Portainer" "EasyPanel" "Yacht.sh")
-PS3="$prompt"
-select opt in "${options[@]}"; do
-
-    case "$REPLY" in
-    1)
-        webui="portainer"
-        break
-        ;;
-    2)
-        webui="easypanel"
-        break
-        ;;
-    3)
-        webui="yatch"
-        break
-        ;;
-    *)
-        printf "Not Support"
-        break
-        ;;
-    esac
-done
+ask_webui()
 if [ "$webui" = "portainer" ]; then
     docker run -d -p 8000:8000 -p 9443:9443 --name portainer \
     --restart=always \
