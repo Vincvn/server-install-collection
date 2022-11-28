@@ -39,7 +39,7 @@ fi
 if [ "$ID" == "ubuntu" ]; then
   if [ -x "$(command -v docker)" ]; then
     sudo apt-get remove docker docker-engine docker.io containerd runc
-  if
+  fi
   sudo apt-get update
   sudo apt-get install \
       ca-certificates \
