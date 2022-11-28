@@ -2,7 +2,7 @@
 #######################################################
 # Docker Installer
 # Offical commands can find at https://docs.docker.com/engine/
-# curl -sO https://github.com/Vincvn/server-install-collection/master/install-docker && chmod +x ./install-docker && sudo ./install-docker
+# curl -sO https://github.com/Vincvn/server-install-collection/main/install-docker && chmod +x ./install-docker && sudo ./install-docker
 #######################################################
 if [ $(id -u) != "0" ]; then
     echo "You need to be root to perform this command"
